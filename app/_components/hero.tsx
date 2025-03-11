@@ -258,11 +258,11 @@ export default function Hero() {
       </div>
       <div className="wrapper" data-width="narrow">
         <p>
-          A frontend developer bringing UI/UX visions to life by transforming
-          static designs into interactive realities
+          I&apos;m a frontend developer building responsive, pixel-perfect user
+          interfaces for the web
         </p>
       </div>
-      <a href="/#projects" className="button">
+      <a href="/#projects" className="hero-button">
         Projects
       </a>
     </section>

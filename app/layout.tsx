@@ -6,6 +6,7 @@ import Header from "./_components/header";
 const beVietnamPro = Be_Vietnam_Pro({
   weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
   subsets: ["latin"],
+  variable: "--font-be-vietnam-pro",
 });
 
 export const metadata: Metadata = {
@@ -19,7 +20,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${beVietnamPro.className}`}>
+    <html lang="en" className={`${beVietnamPro.variable}`}>
       <body>
         <a className="skip-to-main" href="#main">
           Skip to main content
