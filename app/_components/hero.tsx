@@ -1,9 +1,8 @@
 "use client";
-import { motion } from "motion/react";
-import { useEffect, useState } from "react";
-import { Stars } from "@react-three/drei";
-import { Canvas } from "@react-three/fiber";
+import { motion, useScroll, useTransform } from "motion/react";
+import { useEffect, useRef, useState } from "react";
 import useResizeObserver from "../_hooks/useResizeObserver";
+import HeroContent from "./hero-content";
 
 export default function Hero() {
   useResizeObserver();
@@ -148,14 +147,17 @@ export default function Hero() {
     return Math.floor(Math.random() * 20 - 10);
   }
 
+  const targetRef = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: targetRef,
+    offset: ["start start", "end 10%"],
+  });
+
+  const opacity = useTransform(scrollYProgress, [0, 1], [1, 0]);
+
   return (
     <section className="hero section flow">
-      <div className="background">
-        <Canvas>
-          <Stars radius={50} count={2500} factor={4} fade speed={2} />
-        </Canvas>
-      </div>
-      <div className="wrapper">
+      <motion.div className="wrapper" ref={targetRef} style={{ opacity }}>
         <p className="hero__title--tag">Hi, my name is</p>
         <h1 className="hero__title">
           <span className="sr-only">Andrew Marchment</span>
@@ -255,16 +257,8 @@ export default function Hero() {
             </motion.div>
           </motion.div>
         </h1>
-      </div>
-      <div className="wrapper" data-width="narrow">
-        <p>
-          I&apos;m a frontend developer building responsive, pixel-perfect user
-          interfaces for the web
-        </p>
-      </div>
-      <a href="/#projects" className="hero-button">
-        Projects
-      </a>
+      </motion.div>
+      <HeroContent />
     </section>
   );
 }
