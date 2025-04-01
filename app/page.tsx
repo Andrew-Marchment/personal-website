@@ -1,6 +1,7 @@
 "use client";
 
 import About from "./_components/about";
+import Footer from "./_components/footer";
 import Hero from "./_components/hero";
 import { Stars } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
@@ -22,7 +23,8 @@ export default function Home() {
       <div className="section"></div>
       <div className="section"></div>
       <div className="section"></div>
-      <div className="section"></div>
+      
+      <Footer />
     </main>
   );
 }
