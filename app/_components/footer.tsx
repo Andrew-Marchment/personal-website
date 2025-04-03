@@ -1,5 +1,5 @@
-import { motion } from "motion/react";
-import { useEffect, useState } from "react";
+import { motion, useScroll, useTransform } from "motion/react";
+import { useEffect, useRef, useState } from "react";
 
 export default function Footer() {
   const firstNameDefaultSize = [
@@ -147,8 +147,16 @@ export default function Footer() {
     return Math.floor(Math.random() * 20 - 10);
   }
 
+  const targetRef = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: targetRef,
+    offset: ["end end", "start end"],
+  });
+
+  const opacity = useTransform(scrollYProgress, [0, 1], [1, 0]);
+
   return (
-    <footer className="footer">
+    <motion.footer className="footer" ref={targetRef} style={{ opacity }}>
       <motion.p
         className="footer__text"
         whileHover={{
@@ -231,6 +239,6 @@ export default function Footer() {
           </motion.div>
         </motion.div>
       </h3>
-    </footer>
+    </motion.footer>
   );
 }
