@@ -772,6 +772,11 @@
     padding-block: 3rem;
   }
 
+  .footer__text {
+    display: inline-block;
+    padding-bottom: 1.5rem;
+  }
+
   .footer__animated-name {
     position: relative;
     font-size: var(--font-size-heading-lg);
@@ -797,8 +802,6 @@
         display: block;
       }
     }
-
-    /* 462 */
 
     @media (width < 479px) {
       .space {

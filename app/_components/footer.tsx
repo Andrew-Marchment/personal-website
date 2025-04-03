@@ -149,7 +149,16 @@ export default function Footer() {
 
   return (
     <footer className="footer">
-      <p>Designed and built by</p>
+      <motion.p
+        className="footer__text"
+        whileHover={{
+          cursor: "default",
+          letterSpacing: "0.5rem",
+        }}
+        transition={{ duration: 0.3 }}
+      >
+        Designed and built by
+      </motion.p>
       <h3 className="footer__animated-name">
         <span className="sr-only">Andrew Marchment</span>
         <motion.div>
