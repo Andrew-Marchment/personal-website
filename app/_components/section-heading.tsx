@@ -11,7 +11,7 @@ export default function SectionHeading({ headingText }: headingProps) {
   const targetRef = useRef(null);
   const { scrollYProgress } = useScroll({
     target: targetRef,
-    offset: ["start 20%", "end start"],
+    offset: ["start 15%", "end start"],
   });
 
   const opacity = useTransform(scrollYProgress, [0, 1], [1, 0]);

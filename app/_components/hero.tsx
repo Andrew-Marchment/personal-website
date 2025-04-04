@@ -169,7 +169,6 @@ export default function Hero() {
                   <motion.div
                     key={i}
                     style={{ width: char.width }}
-                    // whileHover="hovered"
                     variants={{
                       initial: {
                         color: "var(--clr-high-contrast)",
@@ -177,15 +176,6 @@ export default function Hero() {
                         fontWeight: 700,
                         scale: 0,
                       },
-                      // hovered: {
-                      //   scale: 1.3,
-                      //   rotate: getRandomRotation(),
-                      //   color: "var(--clr-brand-500)",
-                      //   fontWeight: 200,
-                      //   transition: {
-                      //     duration: 0.01,
-                      //   },
-                      // },
                       animated: {
                         color: [
                           null,

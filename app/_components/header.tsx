@@ -49,7 +49,7 @@ export default function Header() {
     >
       <div className="wrapper">
         <div className="site-header__inner">
-          <a href="/#">
+          <a href="/#" className="rounded">
             <Image src="/icon.png" alt="icon" width={36} height={36} />
           </a>
           <AnimatedHamburgerButton />
