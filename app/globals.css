@@ -805,8 +805,13 @@
     border: 1px solid var(--background-light);
     border-radius: var(--border-radius-2);
     padding: 0.5rem 1rem;
-    margin-bottom: 1rem;
     resize: none;
+  }
+
+  .form__error {
+    color: red;
+    text-align: left;
+    height: 26px;
   }
 
   .footer {
