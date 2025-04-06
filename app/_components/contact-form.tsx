@@ -1,5 +1,7 @@
 import SubmitButton from "./submit-button";
+import emailjs from "@emailjs/browser";
 import { useForm } from "react-hook-form";
+import { useRef, useState } from "react";
 import { EMAIL_REGEX } from "../utils/constants";
 
 type contactFormTypes = {
@@ -9,9 +11,13 @@ type contactFormTypes = {
 };
 
 export default function ContactForm() {
+  const form = useRef<HTMLFormElement>(null);
+  const [isLoading, setIsLoading] = useState(false);
+
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm({
     defaultValues: {
@@ -21,12 +27,45 @@ export default function ContactForm() {
     },
   });
 
-  function onSubmit(data: contactFormTypes) {
-    console.log(data);
+  async function onSubmit(data: contactFormTypes) {
+    const serviceID = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID;
+    const templateID = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID;
+    const userID = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY;
+
+    setIsLoading(true);
+
+    try {
+      const res = await emailjs.sendForm(
+        serviceID!,
+        templateID!,
+        form.current!,
+        userID
+      );
+
+      if (res.status === 200) {
+        console.log("message sent");
+        //success toast/state
+        reset();
+        setIsLoading(false);
+      }
+
+      // use for testing loading state/styles
+      // setTimeout(() => {
+      //   console.log("delay for testing purposes");
+      //   reset();
+      //   setIsLoading(false);
+      // }, 3000);
+    } catch (error) {
+      //fail toast
+      alert(
+        "Failed to send message. Please try again later or email me directly at a.marchment25@gmail.com"
+      );
+      setIsLoading(false);
+    }
   }
 
   return (
-    <form className="contact-form" onSubmit={handleSubmit(onSubmit)}>
+    <form ref={form} className="contact-form" onSubmit={handleSubmit(onSubmit)}>
       <label className="form__label" htmlFor="name">
         Name
       </label>
@@ -66,7 +105,7 @@ export default function ContactForm() {
         rows={8}
       />
       <p className="form__error">{errors.message?.message}</p>
-      <SubmitButton>Send Message</SubmitButton>
+      <SubmitButton isLoading={isLoading}>Send Message</SubmitButton>
     </form>
   );
 }
