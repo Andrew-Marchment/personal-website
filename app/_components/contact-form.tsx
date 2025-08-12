@@ -35,26 +35,26 @@ export default function ContactForm() {
     setIsLoading(true);
 
     try {
-      const res = await emailjs.sendForm(
-        serviceID!,
-        templateID!,
-        form.current!,
-        userID
-      );
+      // const res = await emailjs.sendForm(
+      //   serviceID!,
+      //   templateID!,
+      //   form.current!,
+      //   userID
+      // );
 
-      if (res.status === 200) {
-        console.log("message sent");
-        //success toast/state
-        reset();
-        setIsLoading(false);
-      }
-
-      // use for testing loading state/styles
-      // setTimeout(() => {
-      //   console.log("delay for testing purposes");
+      // if (res.status === 200) {
+      //   console.log("message sent");
+      //   //success toast/state
       //   reset();
       //   setIsLoading(false);
-      // }, 3000);
+      // }
+
+      // use for testing loading state/styles
+      setTimeout(() => {
+        console.log("delay for testing purposes");
+        reset();
+        setIsLoading(false);
+      }, 3000);
     } catch (error) {
       //fail toast
       alert(

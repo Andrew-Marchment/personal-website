@@ -24,7 +24,7 @@ export default function SubmitButton({
       disabled={isLoading}
     >
       {isLoading ? (
-        "loading..."
+        <div className="loading-spinner"></div>
       ) : (
         <>
           <div aria-hidden>
